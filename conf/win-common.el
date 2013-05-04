@@ -39,8 +39,8 @@
 ;; @ encode
 
 ;; 機種依存文字
-(require 'cp5022x)
-(define-coding-system-alias 'euc-jp 'cp51932)
+;; (require 'cp5022x)
+;; (define-coding-system-alias 'euc-jp 'cp51932)
 
 ;; decode-translation-table の設定
 (coding-system-put 'euc-jp :decode-translation-table
@@ -322,7 +322,7 @@
            (goto-char (point-min))
 	   ad-do-it) ))
     (ad-activate 'scroll-down)
-    
+
     ;; ------------------------------------------------------------------------
     ;; @ print
     
