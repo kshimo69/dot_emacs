@@ -1,5 +1,13 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
+;; C-hをバックスペースに
+(global-set-key (kbd "C-h") 'delete-backward-char)
+
+;; マウスで選択するとコピーする Emacs 24 ではデフォルトが nil
+(setq mouse-drag-copy-region t)
+
+
+
 
 ;; --in init-ns
 (when (eq window-system 'ns)
@@ -38,21 +46,24 @@
 
 ;; フォントの設定
 (set-face-attribute 'default nil
-                    :family "monaco"
+                    ;; :family "monaco"
+                    :family "Ricty Discord for Powerline"
                     :height 140)
-                    ;; :height 120)
 (set-fontset-font
  (frame-parameter nil 'font)
  'japanese-jisx0208
- '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+ '("Ricty Discord for Powerline" . "iso10646-1"))
+ ;; '("Hiragino Maru Gothic Pro" . "iso10646-1"))
 (set-fontset-font
  (frame-parameter nil 'font)
  'japanese-jisx0212
- '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+ '("Ricty Discord for Powerline" . "iso10646-1"))
+ ;; '("Hiragino Maru Gothic Pro" . "iso10646-1"))
 (set-fontset-font
  (frame-parameter nil 'font)
  'mule-unicode-0100-24ff
- '("monaco" . "iso10646-1"))
+ '("Ricty Discord for Powerline" . "iso10646-1"))
+ ;; '("monaco" . "iso10646-1"))
 (setq face-font-rescale-alist
       '(("^-apple-hiragino.*" . 1.2)
         (".*osaka-bold.*" . 1.2)
@@ -64,6 +75,5 @@
 
 ;; ドラッグ&ドロップした時は新しくファイルを開く
 (define-key global-map [ns-drag-file] 'ns-find-file)
-
 
 )
