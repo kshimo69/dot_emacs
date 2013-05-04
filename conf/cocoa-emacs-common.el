@@ -59,6 +59,3 @@
         (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
         (".*monaco-bold-.*-mac-roman" . 0.9)
         ("-cdac$" . 1.3)))
-
-;; ドラッグ&ドロップした時は新しくファイルを開く
-(define-key global-map [ns-drag-file] 'ns-find-file)
