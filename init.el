@@ -78,6 +78,3 @@
 (require 'init-loader)
 (setq init-loader-show-log-after-init nil)
 (init-loader-load "~/.emacs.d/conf")
-
-;; ドラッグ&ドロップした時は新しくファイルを開く
-(define-key global-map [ns-drag-file] 'ns-find-file)

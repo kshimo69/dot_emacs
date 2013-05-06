@@ -21,6 +21,9 @@
 ;; バックスラッシュの入力
 (define-key global-map [?¥] [?\\])
 
+;; ドラッグ&ドロップした時は新しくファイルを開く
+(define-key global-map [ns-drag-file] 'ns-find-file)
+
 ;; http://d.hatena.ne.jp/suztomo/20080923/1222149517
 ;; fullscreen
 ;; (when (eq window-system 'ns)
