@@ -1,4 +1,4 @@
-;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; -*- Mode: Emacs-Lisp ; Coding: utf-8-unix -*-
 
 ;; 透明
 ;; (set-frame-parameter nil 'alpha 80)
