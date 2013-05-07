@@ -186,7 +186,7 @@
 (setq truncate-lines nil)
 
 ;; ウィンドウ縦分割時のバッファ画面外文字の切り詰め表示
-(setq truncate-partial-width-windows t)
+;; (setq truncate-partial-width-windows t)
 
 ;; 同一バッファ名にディレクトリ付与
 (require 'uniquify)
