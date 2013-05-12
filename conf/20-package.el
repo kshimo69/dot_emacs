@@ -17,7 +17,10 @@
 ;;     yaml-mode
 ;;
 ;;     auto-install
+;;     color-moccur
 ;;     goto-last-change
+;;     grep-a-lot
+;;     igrep
 ;;     migemo
 ;;     open-junk-file
 ;;     point-undo
