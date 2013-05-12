@@ -36,6 +36,12 @@
 (setq mac-pass-command-to-system nil)
 (setq mac-pass-option-to-system nil)
 
+;; 文字コード
+;;(set-language-environment 'Japanese)
+(set-language-environment  'utf-8)
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8-unix)
+
 ;; Mac OS X の HFS+ ファイルフォーマットではファイル名は
 ;; NFD (の様な物)で扱う
 ;; 以下はファイル名を NFC で扱う環境と共同作業等する場合の対処
