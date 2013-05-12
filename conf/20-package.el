@@ -16,6 +16,7 @@
 ;;     google-c-style
 ;;     yaml-mode
 ;;
+;;     auto-install
 ;;     goto-last-change
 ;;     open-junk-file
 ;;     point-undo
