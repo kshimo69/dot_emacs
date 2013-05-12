@@ -18,6 +18,8 @@
 ;;
 ;;     auto-install
 ;;     color-moccur
+;;     color-theme
+;;     color-theme-solarized
 ;;     goto-last-change
 ;;     grep-a-lot
 ;;     igrep
