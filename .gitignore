@@ -1,0 +1,11 @@
+*.elc
+.*~
+*~
+.#*
+history
+ac-comphist.dat
+.org-id-locations
+url/cookies
+elpa/archives/*
+var/emacs-places
+var/recentf

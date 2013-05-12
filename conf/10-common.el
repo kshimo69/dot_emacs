@@ -28,10 +28,12 @@
       (add-hook 'find-file-hook 'skt:raise-frame)
       ))
 
-;; メニューバー、ツールバー非表示
+;; メニューバー、ツールバー、スクロールバー非表示
 ;; (menu-bar-mode nil)
-(tool-bar-mode nil)
-(scroll-bar-mode nil)
+;; (tool-bar-mode nil)
+(tool-bar-mode -1)
+;; (scroll-bar-mode nil)
+(scroll-bar-mode -1)
 
 ;; ヴィジブルベルを抑制
 (setq visible-bell nil)
@@ -94,7 +96,7 @@
 ;; !path!to!file-name~ で保存される
 (setq backup-directory-alist
       '(
-        ("." . "~/.emacs.d/var/emacs")
+        ("." . "~/.emacs.d/var/backup")
         ))
 
 ;; TAB はスペース 4 個ぶんを基本
@@ -139,3 +141,70 @@
 
 ;; マウスで選択するとコピーする Emacs 24 ではデフォルトが nil
 (setq mouse-drag-copy-region t)
+
+;; C-u C-SPC C-SPC... でカーソル位置を辿る
+;; http://d.hatena.ne.jp/kbkbkbkb1/20111205/1322988550
+(setq set-mark-command-repeat-pop t)
+
+;; カーソル位置のファイル名、URLで開く
+(ffap-bindings)
+
+;; GUI上のコピー
+(setq x-select-enable-primary t)
+
+;; kill-ringに同じ内容の文字列を入れない
+;; http://d.hatena.ne.jp/kitokitoki/20100515/p1
+(defadvice kill-new (before ys:no-kill-new-duplicates activate)
+  (setq kill-ring (delete (ad-get-arg 0) kill-ring)))
+
+;; Emacsを終了してもファイルを編集してた位置やminibuffer への入力内容を覚えておく
+(when (require 'session nil t)
+  (setq session-initialize '(de-saveplace session keys menus places)
+        session-globals-include '((kill-ring 50)
+                                  (session-file-alist 500 t)
+                                  (file-name-history 10000)))
+  ;; これがないと file-name-history に500個保存する前に max-string に達する
+  (setq session-globals-max-string 100000000)
+  ;; デフォルトでは30!
+  (setq history-length t)
+  (add-hook 'after-init-hook 'session-initialize))
+
+;; 履歴を次回Emacs起動時にも保存する
+(savehist-mode 1)
+
+;; ファイル内のカーソル位置を記録する
+(require 'saveplace nil t)
+(setq-default save-place t)
+(setq save-place-file "~/.emacs.d/var/emacs-places")
+
+;; ログの記録行数を減らす
+(setq message-log-max 10000)
+
+;; ミニバッファを再帰的に呼び出せるようにする
+(setq enable-recursive-minibuffers t)
+
+;; *scratch* バッファを消さないように
+(defun my-make-scratch (&optional arg)
+  (interactive)
+  (progn
+    ;; "*scratch*" を作成して buffer-list に放り込む
+    (set-buffer (get-buffer-create "*scratch*"))
+    (funcall initial-major-mode)
+    (erase-buffer)
+    (when (and initial-scratch-message (not inhibit-startup-message))
+      (insert initial-scratch-message))
+    (or arg (progn (setq arg 0)
+                   (switch-to-buffer "*scratch*")))
+    (cond ((= arg 0) (message "*scratch* is cleared up."))
+          ((= arg 1) (message "another *scratch* is created")))))
+(add-hook 'kill-buffer-query-functions
+          ;; *scratch* バッファで kill-buffer したら内容を消去するだけにする
+          (lambda ()
+            (if (string= "*scratch*" (buffer-name))
+                (progn (my-make-scratch 0) nil)
+              t)))
+(add-hook 'after-save-hook
+          ;; *scratch* バッファの内容を保存したら *scratch* バッファを新しく作る
+          (lambda ()
+            (unless (member (get-buffer "*scratch*") (buffer-list))
+              (my-make-scratch 1))))

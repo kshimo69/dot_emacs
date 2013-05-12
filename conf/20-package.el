@@ -15,7 +15,11 @@
 ;;     markdown-mode
 ;;     google-c-style
 ;;     yaml-mode
+;;
+;;     goto-last-change
 ;;     open-junk-file
+;;     point-undo
+;;     recentf-ext
 ;;     ))
 
 ;; (let ((not-installed (loop for x in installing-package-list
