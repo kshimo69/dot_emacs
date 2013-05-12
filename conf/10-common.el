@@ -103,6 +103,18 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
+;; スクロール時のカーソル位置の維持
+(setq scroll-preserve-screen-position t)
+
+;; スクロール行数（一行ごとのスクロール）
+(setq vertical-centering-font-regexp ".*")
+(setq scroll-conservatively 35)
+(setq scroll-margin 0)
+(setq scroll-step 1)
+
+;; 画面スクロール時の重複行数
+(setq next-screen-context-lines 1)
+
 ;; 個人用infoディレクトリを追加
 ;; 全体のinfo優先
 ;; (setq Info-default-directory-list
