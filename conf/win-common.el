@@ -180,82 +180,11 @@
 ;; ------------------------------------------------------------------------
 ;; @ frame
 
-;; フレームタイトルの設定
-(setq frame-title-format "%b")
-
-;; ------------------------------------------------------------------------
-;; @ buffer
-
-;; バッファ画面外文字の切り詰め表示
-(setq truncate-lines nil)
-
-;; ウィンドウ縦分割時のバッファ画面外文字の切り詰め表示
-;; (setq truncate-partial-width-windows t)
-
-;; 同一バッファ名にディレクトリ付与
-(require 'uniquify)
-(setq uniquify-buffer-name-style 'forward)
-(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
-(setq uniquify-ignore-buffers-re "*[^*]+*")
-
-;; ------------------------------------------------------------------------
-;; @ fringe
-
-;; バッファ中の行番号表示
-(global-linum-mode t)
-
-;; 行番号のフォーマット
-;; (set-face-attribute 'linum nil :foreground "red" :height 0.8)
-(set-face-attribute 'linum nil :height 0.8)
-(setq linum-format "%4d")
-
-;; ------------------------------------------------------------------------
-;; @ modeline
-
-;; 行番号の表示
-(line-number-mode t)
-
-;; 列番号の表示
-(column-number-mode t)
-
-;; 時刻の表示
-(require 'time)
-(setq display-time-24hr-format t)
-(setq display-time-string-forms '(24-hours ":" minutes))
-(display-time-mode t)
-
 ;; cp932エンコード時の表示を「P」とする
 (coding-system-put 'cp932 :mnemonic ?P)
 (coding-system-put 'cp932-dos :mnemonic ?P)
 (coding-system-put 'cp932-unix :mnemonic ?P)
 (coding-system-put 'cp932-mac :mnemonic ?P)
-
-;; ------------------------------------------------------------------------
-;; @ cursor
-
-;; カーソル点滅表示
-(blink-cursor-mode 0)
-
-;; スクロール時のカーソル位置の維持
-(setq scroll-preserve-screen-position t)
-
-;; スクロール行数（一行ごとのスクロール）
-(setq vertical-centering-font-regexp ".*")
-(setq scroll-conservatively 35)
-(setq scroll-margin 0)
-(setq scroll-step 1)
-
-;; 画面スクロール時の重複行数
-(setq next-screen-context-lines 1)
-
-;; ------------------------------------------------------------------------
-;; @ default setting
-
-;; 起動メッセージの非表示
-(setq inhibit-startup-message t)
-
-;; スタートアップ時のエコー領域メッセージの非表示
-(setq inhibit-startup-echo-area-message -1)
 
 ;; ------------------------------------------------------------------------
 ;; @ image-library
@@ -272,72 +201,8 @@
 ;;       )
 
 ;; ------------------------------------------------------------------------
-;; @ backup
-
-;; 変更ファイルのバックアップ
-(setq make-backup-files nil)
-
-;; 変更ファイルの番号つきバックアップ
-(setq version-control nil)
-
-;; 編集中ファイルのバックアップ
-(setq auto-save-list-file-name nil)
-(setq auto-save-list-file-prefix nil)
-
-;; 編集中ファイルのバックアップ先
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-
-;; 編集中ファイルのバックアップ間隔（秒）
-(setq auto-save-timeout 30)
-
-;; 編集中ファイルのバックアップ間隔（打鍵）
-(setq auto-save-interval 500)
-
-;; バックアップ世代数
-(setq kept-old-versions 1)
-(setq kept-new-versions 2)
-
-;; 上書き時の警告表示
-;; (setq trim-versions-without-asking nil)
-
-;; 古いバックアップファイルの削除
-(setq delete-old-versions t)
-
-;; ------------------------------------------------------------------------
-;; @ key bind
-
-;; 標準キーバインド変更
-(global-set-key "\C-z"          'scroll-down)
-
-;; ------------------------------------------------------------------------
-;; @ scroll
-
-;; バッファの先頭までスクロールアップ
-(defadvice scroll-up (around scroll-up-around)
-  (interactive)
-  (let* ( (start_num (+ 1 (count-lines (point-min) (point))) ) )
-    (goto-char (point-max))
-    (let* ( (end_num (+ 1 (count-lines (point-min) (point))) ) )
-      (goto-line start_num )
-      (let* ( (limit_num (- (- end_num start_num) (window-height)) ))
-	(if (<; (- (- end_num start_num) (window-height)) 0)
-	     (goto-char (point-max))
-             ad-do-it)) )) )
-  (ad-activate 'scroll-up))
-  
-;; バッファの最後までスクロールダウン
-(defadvice scroll-down (around scroll-down-around)
-  (interactive)
-  (let* ( (start_num (+ 1 (count-lines (point-min) (point)))) )
-    (if (<; start_num (window-height))
-	 (goto-char (point-min))
-	 ad-do-it) ))
-  (ad-activate 'scroll-down))
-
-;; ------------------------------------------------------------------------
 ;; @ print
-    
+
 (setq ps-print-color-p t
       ps-lpr-command "gswin32c.exe"
       ps-multibyte-buffer 'non-latin-printer
@@ -347,28 +212,18 @@
       ps-printer-name-option nil
       ps-print-header nil          ; ヘッダの非表示
       )
-    
-;; ------------------------------------------------------------------------
-;; @ hiwin-mode
-;; (require 'hiwin)
-
-;; hiwin-modeを有効化
-;; (hiwin-activate)
-
-;; 非アクティブウィンドウの背景色を設定
-;; (set-face-background 'hiwin-face "gray80")
 
 ;; ------------------------------------------------------------------------
 ;; @ tabbar
-    
+
 ;; (require 'tabbar)
-    
+
 ;; ;; tabbar有効化
 ;; (tabbar-mode)
-    
+
 ;; ;; タブ切替にマウスホイールを使用（0：有効，-1：無効）
 ;; (tabbar-mwheel-mode -1)
-    
+
 ;; ;; タブグループを使用（t：有効，nil：無効）
 ;; (setq tabbar-buffer-groups-function nil)
 
@@ -402,7 +257,7 @@
 ;; 	  (if (memq cur-buf tabs)
 ;; 	      tabs
 ;; 	    (cons cur-buf tabs)))))
-    
+
 ;; ;; キーバインド設定
 ;; (global-set-key (kbd "<C-tab>")   'tabbar-forward-tab)
 ;; (global-set-key (kbd "<C-S-tab>") 'tabbar-backward-tab)
@@ -471,7 +326,7 @@
 (setq shell-mode-hook
       (function
        (lambda ()
-	 
+
 	 ;; シェルモードの入出力文字コード
 	 (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
 	 (set-buffer-file-coding-system    'sjis-unix)
@@ -497,20 +352,6 @@
 ;; (setq migemo-coding-system 'utf-8-unix)
 ;; (load-library "migemo")
 ;; (migemo-init)
-
-;; ------------------------------------------------------------------------
-;; @ color-theme
-;; (require 'color-theme)
-;; (color-theme-initialize)
-
-;; ------------------------------------------------------------------------
-;; @ package manager
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/") t)
-(add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
-(package-initialize)
 
 ;; ------------------------------------------------------------------------
 ;; @ w32-symlinks
