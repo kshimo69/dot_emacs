@@ -223,3 +223,6 @@
           (lambda ()
             (unless (member (get-buffer "*scratch*") (buffer-list))
               (my-make-scratch 1))))
+
+;; 終了時に聞く
+(setq confirm-kill-emacs 'y-or-n-p)
