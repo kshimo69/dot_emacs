@@ -127,6 +127,9 @@
 (setq frame-title-format
       (concat  "%b - emacs@" system-name))
 
+;; yes or no を y or n に
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; default to unified diffs
 (setq diff-switches "-u")
 
