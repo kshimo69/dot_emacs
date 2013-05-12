@@ -11,7 +11,11 @@
 (setq default-buffer-file-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
+;; コマンドプロンプトを使うならsjis
 (setq file-name-coding-system 'shift_jis)
+(setq locale-coding-system 'shift_jis)  ;; term内の文字コード
+;; (setq file-name-coding-system 'utf-8)
+;; (setq locale-coding-system 'utf-8)
 
 ;; (set-keyboard-coding-system 'cp932)
 ;; (prefer-coding-system 'utf-8-dos)
