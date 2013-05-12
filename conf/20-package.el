@@ -18,6 +18,7 @@
 ;;
 ;;     auto-install
 ;;     goto-last-change
+;;     migemo
 ;;     open-junk-file
 ;;     point-undo
 ;;     recentf-ext
