@@ -9,4 +9,5 @@ url/cookies
 elpa/archives/*
 var/emacs-places
 var/recentf
+server/*
 conf/00-password.el
