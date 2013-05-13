@@ -81,22 +81,39 @@
               (thing-at-point 'symbol) nil nil nil
               "*anything for document*"))
 
+  (setq my-anything-sources
+        '(
+          anything-c-source-ffap-line
+          anything-c-source-ffap-guesser
+          anything-c-source-buffers+
+          anything-c-source-recentf
+          anything-c-source-bookmarks
+          anything-c-source-file-cache
+          anything-c-source-files-in-current-dir+
+          anything-c-source-locate
+          anything-c-source-gtags-select
+          ))
+
   (defun my-anything ()
     (interactive)
     (anything-other-buffer
-     '(anything-c-source-ffap-line
-       anything-c-source-ffap-guesser
-       anything-c-source-buffers+
-       anything-c-source-recentf
-       anything-c-source-bookmarks
-       anything-c-source-file-cache
-       anything-c-source-files-in-current-dir+
-       anything-c-source-locate
-       anything-c-source-gtags-select
-       )
+     my-anything-sources
      "*my-anything*"))
   (global-set-key (kbd "C-x C-l") 'my-anything)
   (global-set-key (kbd "C-;") 'my-anything)
+
+  (when (executable-find "cmigemo")
+    (require 'anything-migemo)
+    (lambda()
+      (interactive)
+      (anything-migemo t my-anything-sources))
+    (global-set-key (kbd "C-x C-l")
+                    (lambda()
+                      (interactive)(anything-migemo t my-anything-sources)))
+    (global-set-key (kbd "C-;")
+                    (lambda()
+                      (interactive)(anything-migemo t my-anything-sources)))
+    )
 
   ;; http://d.hatena.ne.jp/mooz/20110320/p1
   (require 'cl)  ; loop, delete-duplicates
