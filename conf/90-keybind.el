@@ -5,6 +5,7 @@
 
 ;; C-h に割り当てられている関数 help-command を C-x C-h に割り当てる
 (global-set-key (kbd "C-x C-h") 'help-command)
+(global-set-key (kbd "<f1>") 'help-for-help)
 
 ;;改行後に自動インデント
 (global-set-key "\C-m" 'newline-and-indent)
