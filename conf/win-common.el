@@ -164,7 +164,8 @@
 ;; ------------------------------------------------------------------------
 ;; @ font
 
-(set-face-font 'default "Ricty Diminished for Powerline-12")
+;; (set-face-font 'default "Ricty Diminished for Powerline-12")
+(set-face-font 'default "Migu 1M-10")
 
 ;; ------------------------------------------------------------------------
 ;; @ frame
