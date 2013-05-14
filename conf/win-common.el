@@ -175,6 +175,9 @@
 (coding-system-put 'cp932-unix :mnemonic ?P)
 (coding-system-put 'cp932-mac :mnemonic ?P)
 
+;; 透明
+(set-frame-parameter (selected-frame) 'alpha '(95 60))
+
 ;; ------------------------------------------------------------------------
 ;; @ image-library
 ;; (setq image-library-alist
