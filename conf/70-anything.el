@@ -10,6 +10,8 @@
   (define-key anything-map (kbd "C-M-n") 'anything-next-source)
   ;; 候補が多いときに体感速度を早くする
   (setq anything-quick-update t)
+  ;; 待ち時間を短く
+  (setq anything-idle-delay 0.1)
   ;; 300件まで表示する(デフォルト50件)
   (setq anything-candidate-number-limit 300)
   ;; 候補選択ショートカットをアルファベットに
