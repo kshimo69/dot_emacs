@@ -37,13 +37,18 @@
 (when (require 'color-moccur nil t)
   ;; M-oをoccur-by-moccurに
   (global-set-key (kbd "M-o") 'occur-by-moccur)
+  ;; C-M-oをmoccur-grep-findに
+  (global-set-key (kbd "C-M-o") 'moccur-grep-find)
   ;; スペース区切りでAND検索
   (setq moccur-split-word t)
   ;; ディレクトリ検索で除外するファイル
   (add-to-list 'dmoccur-exclusion-mask "\\.DS_Store")
   (add-to-list 'dmoccur-exclusion-mask "^#.+#$")
+  (add-to-list 'dmoccur-exclusion-mask "\\~$")
+  (add-to-list 'dmoccur-exclusion-mask "\\.svn\\/\*")
   (require 'moccur-edit nil t)
   ;; MigemoがあればMigemoを使う
   (when (and (executable-find "cmigemo")
              (require 'migemo nil t))
-    (setq moccur-use-migemo t)))
+    (setq moccur-use-migemo t))
+  )
