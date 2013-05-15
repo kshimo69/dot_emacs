@@ -8,7 +8,8 @@
 (set-terminal-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8-unix)
 (set-buffer-file-coding-system 'utf-8-unix)
-(setq default-buffer-file-coding-system 'utf-8-unix)
+;; (setq default-buffer-file-coding-system 'utf-8-unix)
+(setq buffer-file-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 (set-default-coding-systems 'utf-8-unix)
 ;; コマンドプロンプトを使うならsjis
