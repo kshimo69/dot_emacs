@@ -11,3 +11,4 @@ var/emacs-places
 var/recentf
 server/*
 conf/00-password.el
+elpa/*.txt
