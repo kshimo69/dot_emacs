@@ -33,8 +33,8 @@
 
 ;; 全角スペース、タブ等の様々な空白文字をハイライト
 ;; Meadow/memoからもらってきたと思われる。
-(defface my-face-b-1 '((t (:background "medium aquamarine"))) nil)
-(defface my-face-b-2 '((t (:background "gray"))) nil)
+(defface my-face-b-1 '((t (:background "RoyalBlue3"))) nil)
+(defface my-face-b-2 '((t (:background "dim gray"))) nil)
 (defface my-face-u-1 '((t (:foreground "SteelBlue" :underline t))) nil)
 (defvar my-face-b-1 'my-face-b-1)
 (defvar my-face-b-2 'my-face-b-2)
