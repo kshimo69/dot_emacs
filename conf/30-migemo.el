@@ -1,5 +1,8 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
+;; githubにあるemacs24対応版を使用する
+;; (auto-install-from-url "https://raw.github.com/emacs-jp/migemo/master/migemo.el")
+
 (when (executable-find "cmigemo")
   (when (require 'migemo nil t)
     (setq migemo-use-pattern-alist t)
