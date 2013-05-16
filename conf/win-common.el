@@ -366,8 +366,12 @@
 
 (global-set-key (kbd "C-c C") 'compile-directory)
 (global-set-key (kbd "C-c c") 'compile)
-(define-key c++-mode-map (kbd "C-c C-c") 'recompile)
-(define-key c-mode-map (kbd "C-c C-c") 'recompile)
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+(defun my-c++-mode-hook ()
+  (define-key c++-mode-map (kbd "C-c C-c") 'recompile))
+(add-hook 'c-mode-common-hook 'my-c-mode-hook)
+(defun my-c-mode-hook ()
+  (define-key c-mode-map (kbd "C-c C-c") 'recompile))
 
 ;; ------------------------------------------------------------------------
 ;; @ menu-tree
