@@ -8,7 +8,7 @@
 (global-set-key (kbd "<f1>") 'help-for-help)
 
 ;;改行後に自動インデント
-(global-set-key "\C-m" 'newline-and-indent)
+(global-set-key (kbd "C-m") 'newline-and-indent)
 
 ;; Scroll buffer without moving the cursor
 (global-set-key (kbd "M-p") '(lambda () (interactive) (scroll-down 1)))
