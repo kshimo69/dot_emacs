@@ -137,14 +137,15 @@
 (setq next-screen-context-lines 1)
 
 ;; 個人用infoディレクトリを追加
+(require 'info)
 ;; 全体のinfo優先
 ;; (setq Info-default-directory-list
 ;;       (cons (expand-file-name "~/.emacs.d/info/")
 ;;             Info-default-directory-list))
 ;; 個人用infoディレクトリを優先
-;; (setq Info-default-directory-list
-;;       (append Info-default-directory-list
-;;               (list (expand-file-name "~/.emacs.d/info"))))
+(setq Info-default-directory-list
+      (append Info-default-directory-list
+              (list (expand-file-name "~/.emacs.d/info"))))
 
 ;; ファイル名の1階層上を表示する
 (when (require 'uniquify nil t)
