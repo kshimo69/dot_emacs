@@ -24,3 +24,6 @@
   '(font-lock-add-keywords
     'dired-mode
     (list '(dired-today-search . dired-todays-face))))
+
+;; C-x j で dired-jump
+(global-set-key (kbd "C-x j") 'dired-jump-other-window)
