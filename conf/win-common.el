@@ -322,9 +322,52 @@
        (lambda ()
 
          ;; シェルモードの入出力文字コード
-         (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
-         (set-buffer-file-coding-system    'sjis-unix)
+         ;; (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
+         ;; (set-buffer-file-coding-system    'sjis-unix)
+         (set-buffer-process-coding-system 'utf-8-dos 'utf-8-unix)
+         (set-buffer-file-coding-system    'utf-8-unix)
          )))
+
+;; ------------------------------------------------------------------------
+;; @ compile
+(setq compile-command "make -j8 ")
+
+;; (require 'ansi-color)
+(add-hook 'compilation-filter-hook
+          '(lambda ()
+             (ansi-color-apply-on-region (point-min) (point-max))))
+
+;; コンパイル時の文字コード
+(add-hook 'compilation-filter-hook
+          '(lambda ()
+             ;; シェルモードの入出力文字コード
+             ;; (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
+             ;; (set-buffer-file-coding-system    'sjis-unix)
+             (set-buffer-process-coding-system 'utf-8-dos 'utf-8-unix)
+             (set-buffer-file-coding-system    'utf-8-unix)
+             ))
+
+;; ディレクトリを指定してコンパイル
+(defun compile-directory (filename command &optional comint)
+  (interactive
+   (list
+    (read-file-name "Directory: " nil default-directory)
+    (let ((command (eval compile-command)))
+      (if (or compilation-read-command current-prefix-arg)
+          (compilation-read-command command)
+        command))
+    (consp current-prefix-arg)))
+  (unless (equal command (eval compile-command))
+    (setq compile-command command))
+  (save-some-buffers (not compilation-ask-about-save) nil)
+  (setq-default compilation-directory filename)
+  (setq default-directory filename)
+  (compilation-start command comint))
+
+(global-set-key (kbd "C-c C") 'compile-directory)
+(global-set-key (kbd "C-c c") 'compile)
+(define-key c++-mode-map (kbd "C-c C-c") 'recompile)
+(define-key c-mode-map (kbd "C-c C-c") 'recompile)
 
 ;; ------------------------------------------------------------------------
 ;; @ menu-tree
