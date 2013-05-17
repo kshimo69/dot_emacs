@@ -2,13 +2,9 @@
 .*~
 *~
 .#*
-history
-ac-comphist.dat
-.org-id-locations
 url/cookies
 elpa/archives/*
-var/emacs-places
-var/recentf
+var/*
 server/*
 conf/00-password.el
 elpa/*.txt
