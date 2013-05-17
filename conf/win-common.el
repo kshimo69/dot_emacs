@@ -348,6 +348,35 @@
 (defun my-c-mode-hook ()
   (define-key c-mode-map (kbd "C-c C-c") 'recompile))
 
+;; ソースを開いていた場合はヘッダ、ヘッダを開いていた場合はソースを開く
+(defun find-current-buffer-pair-file()
+  (interactive)
+  (if (or (string= (substring (buffer-file-name) -4 nil) ".cpp")
+          (string= (substring (buffer-file-name) -2 nil) ".c") )
+      (progn
+        (setq openfile (buffer-file-name))
+        (setq openfile (replace-regexp-in-string "src/\\(\\w+\\)\\.cpp$" "include/\\1.h" openfile))
+        (setq openfile (replace-regexp-in-string "/\\(\\w+\\)\\.cpp$" "/\\1.h" openfile))
+        (setq openfile (replace-regexp-in-string "src/\\(\\w+\\)\\.c$" "include/\\1.h" openfile))
+        (setq openfile (replace-regexp-in-string "/\\(\\w+\\)\\.c$" "/\\1.h" openfile))
+        (find-file openfile)
+        )
+    (progn
+      (if (string= (substring (buffer-file-name) -2 nil) ".h")
+          (progn
+            (setq openfile (buffer-file-name))
+            (setq openfile (replace-regexp-in-string "include/\\(\\w+\\)\\.h$" "src/\\1.cpp" openfile))
+            (setq openfile (replace-regexp-in-string "/\\(\\w+\\)\\.h$" "/\\1.cpp" openfile))
+            (setq openfile (replace-regexp-in-string "include/\\(\\w+\\)\\.h$" "src/\\1.c" openfile))
+            (setq openfile (replace-regexp-in-string "/\\(\\w+\\)\\.h$" "/\\1.c" openfile))
+            (find-file openfile)
+            )
+        )
+      )
+    )
+  )
+(global-set-key (kbd "C-M-f") 'find-current-buffer-pair-file)
+
 ;; ------------------------------------------------------------------------
 ;; @ menu-tree
 ;; (setq menu-tree-coding-system 'utf-8)
