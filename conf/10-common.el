@@ -208,6 +208,9 @@
 
 ;; 履歴を次回Emacs起動時にも保存する
 (savehist-mode 1)
+(setq savehist-file (expand-file-name "~/.emacs.d/var/history"))
+;; savehistのファイルに保存する履歴からfile-name-historyをのぞく
+(setq savehist-ignored-variables '(file-name-history))
 
 ;; ファイル内のカーソル位置を記録する
 (require 'saveplace nil t)
