@@ -39,7 +39,10 @@
 (if window-system
     (progn
       (require 'server)
-      (unless (server-running-p) (server-start))
+      (when (and (functionp 'server-running-p)
+                 (not (server-running-p)))
+        (server-start))
+      ;; (unless (server-running-p) (server-start))
       (defun skt:raise-frame()
         ;; Frame を前面にする
         (raise-frame (selected-frame))
