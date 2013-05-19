@@ -75,7 +75,8 @@
 
 ;; 時刻を表示
 (setq display-time-string-forms
-      '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
+      ;; '(24-hours ":" minutes " " month "/" day "(" dayname ")"))
+      '(24-hours ":" minutes))
 (display-time)
 
 ;; 曜日表示は英語
@@ -137,15 +138,16 @@
 (setq next-screen-context-lines 1)
 
 ;; 個人用infoディレクトリを追加
-(require 'info)
-;; 全体のinfo優先
-;; (setq Info-default-directory-list
-;;       (cons (expand-file-name "~/.emacs.d/info/")
-;;             Info-default-directory-list))
-;; 個人用infoディレクトリを優先
-(setq Info-default-directory-list
-      (append Info-default-directory-list
-              (list (expand-file-name "~/.emacs.d/info"))))
+(when (require 'info nil t)
+  ;; 全体のinfo優先
+  ;; (setq Info-default-directory-list
+  ;;       (cons (expand-file-name "~/.emacs.d/info/")
+  ;;             Info-default-directory-list))
+  ;; 個人用infoディレクトリを優先
+  (setq Info-default-directory-list
+        (append Info-default-directory-list
+                (list (expand-file-name "~/.emacs.d/info"))))
+  )
 
 ;; ファイル名の1階層上を表示する
 (when (require 'uniquify nil t)
@@ -208,7 +210,8 @@
 
 ;; 履歴を次回Emacs起動時にも保存する
 (savehist-mode 1)
-(setq savehist-file (expand-file-name "~/.emacs.d/var/history"))
+;; (setq savehist-file (expand-file-name "~/.emacs.d/var/history"))
+(setq savehist-file "~/.emacs.d/var/history")
 ;; savehistのファイルに保存する履歴からfile-name-historyをのぞく
 (setq savehist-ignored-variables '(file-name-history))
 
@@ -221,7 +224,7 @@
 (setq message-log-max 10000)
 
 ;; ミニバッファを再帰的に呼び出せるようにする
-(setq enable-recursive-minibuffers t)
+;; (setq enable-recursive-minibuffers t)
 
 ;; *scratch* バッファを消さないように
 (defun my-make-scratch (&optional arg)
