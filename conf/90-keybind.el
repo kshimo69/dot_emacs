@@ -86,3 +86,6 @@
         try-complete-lisp-symbol           ;Lispシンボル全体
         ))
 (global-set-key (kbd "M-/") 'hippie-expand)
+
+;; スクリプトを実行する
+(global-set-key (kbd "C-c p") 'executable-interpret)
