@@ -1,9 +1,6 @@
 ;; -*- Mode: Emacs-Lisp ; Coding: utf-8 -*-
 
 (autoload 'gtags-mode "gtags" "" t)
-;; (load "gtags")
-;; (require 'gtags)
-;; (load-library "gtags")
 (setq gtags-path-style 'relative)
 (setq gtags-read-only t)
 (setq gtags-mode-hook
@@ -26,3 +23,9 @@
 ;;              (gtags-mode 1)
 ;;              (gtags-make-complete-list)
 ;;              ))
+
+;; /usr/includeを参照しつつ別のパスでコードを書く場合
+;; $ cd /usr/include
+;; $ gtags ~/.include_gtags
+;; $ export GTAGSROOT=/usr/include #gtagsを実行したパスを設定
+;; $ export GTAGSDBPATH=/.include_gtags #GTAGSなどのインデックスファイルが存在するパスを設定
