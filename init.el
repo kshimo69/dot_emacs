@@ -75,6 +75,7 @@
  )
 
 ;; init-loader
-(require 'init-loader)
-(setq init-loader-show-log-after-init nil)
-(init-loader-load "~/.emacs.d/conf")
+(when (require 'init-loader nil t)
+  (setq init-loader-show-log-after-init nil)
+  (init-loader-load "~/.emacs.d/conf")
+  )
