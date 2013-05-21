@@ -35,6 +35,20 @@
 
   ;; http://www.emacswiki.org/emacs/sdic-inline-pos-tip.el
   (require 'sdic-inline-pos-tip nil t)
-  (setq sdic-inline-display-func 'sdic-inline-pos-tip-show)
+  ;; リージョン選択時だけ単語の意味を表示
+  (defun sdic-inline-pos-tip-show-when-region-selected (entry)
+    (cond
+     ((and transient-mark-mode mark-active)
+      (funcall 'sdic-inline-pos-tip-show entry))
+     (t
+      ; (funcall 'sdic-inline-display-minibuffer entry)
+        )))
+  ;; (setq sdic-inline-display-func 'sdic-inline-pos-tip-show)
+  (setq sdic-inline-display-func 'sdic-inline-pos-tip-show-when-region-selected)
   ;; (define-key sdic-inline-map (kbd "C-c C-p") 'sdic-inline-pos-tip-show)
+  (add-hook 'sdic-inline-hook '(lambda ()
+                                 (define-key sdic-inline-map (kbd "C-c C-p")
+                                   nil)
+                                 ))
+  (global-set-key (kbd "C-c w") 'sdic-inline-pos-tip-show)
   )
