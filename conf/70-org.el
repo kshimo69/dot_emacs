@@ -10,10 +10,16 @@
 (global-set-key (kbd "C-c b") 'org-iswitchb)
 (global-set-key (kbd "C-c r") 'org-remember)
 (global-set-key (kbd "C-c c") 'org-capture)
-(setq org-directory "~/Dropbox/org/")
-(setq org-agenda-files (list "~/Dropbox/org/agenda.org"
-                             "~/Dropbox/org/code-reading.org"
-                             "~/Dropbox/org/mobileorg.org"
+(add-hook 'org-mode-hook '(lambda ()
+                            (define-key org-mode-map (kbd "C-c C-p")
+                              'outline-previous-visible-heading)
+                            (define-key org-mode-map (kbd "C-c C-n")
+                              'outline-next-visible-heading)
+                            ))
+(setq org-directory "~/org/")
+(setq org-agenda-files (list "~/org/agenda.org"
+                             "~/org/code-reading.org"
+                             "~/org/mobileorg.org"
                              ))
 ;; (setq org-agenda-files (list org-directory))
 (setq org-default-notes-file (concat org-directory "agenda.org"))
@@ -58,10 +64,10 @@
          "** SOMEDAY %?\n   Added: %T\n   %i\n")
         ("d" "Daily review" entry
          (file+headline nil "Tasks")
-         "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/Dropbox/org/daily_review.txt]")
+         "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/org/daily_review.txt]")
         ("w" "Weekly review" entry
          (file+headline nil "Tasks")
-         "** TODO Weekly Review %T[/] :review:\n%?%[~/Dropbox/org/weekly_review.txt]")
+         "** TODO Weekly Review %T[/] :review:\n%?%[~/org/weekly_review.txt]")
         ))
 
 ;; http://d.hatena.ne.jp/rubikitch/20090121/1232468026
@@ -73,8 +79,8 @@
         ("Idea" ?i "** SOMEDAY %^{Brief Description} %^g\n%?\n%i\nAdded: %T" nil "New Ideas")
         ;; ("Todo" ?t "** %?\n   %i\n   %a\n   %T" nil "Tasks")
         ("Todo" ?t "** TODO %^{Brief Description} %^g\n%?\n%i\nAdded: %T" nil "Tasks")
-        ("Daily review" ?d "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/Dropbox/org/daily_review.txt]\n" nil "Tasks")
-        ("Weekly review" ?w "** TODO Weekly Review %T[/] :review:\n%?%[~/Dropbox/org/weekly_review.txt]\n" nil "Tasks")
+        ("Daily review" ?d "** TODO Daily Review[/] :review:\n%?   DEADLINE: %t\n%[~/org/daily_review.txt]\n" nil "Tasks")
+        ("Weekly review" ?w "** TODO Weekly Review %T[/] :review:\n%?%[~/org/weekly_review.txt]\n" nil "Tasks")
         ))
 
 (defvar org-code-reading-software-name nil)
