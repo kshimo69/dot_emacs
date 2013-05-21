@@ -12,11 +12,16 @@
          (local-set-key (kbd "C-t") 'gtags-pop-stack)
          ))
 ;; 自動で gtags-mode になるように＆補完リスト作成
-;; (add-hook 'c-mode-common-hook
-;;           '(lambda()
-;;              (gtags-mode 1)
-;;              (gtags-make-complete-list)
-;;              ))
+(add-hook 'c-mode-common-hook
+          '(lambda()
+             (gtags-mode 1)
+             (gtags-make-complete-list)
+             ))
+(add-hook 'c++-mode-hook
+          '(lambda()
+             (gtags-mode 1)
+             (gtags-make-complete-list)
+             ))
 ;; gtags not support python
 ;; (add-hook 'python-mode-hook
 ;;           '(lambda()
