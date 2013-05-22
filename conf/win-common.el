@@ -307,11 +307,6 @@
 ;; @ compile
 (setq compile-command "make -j8 ")
 
-;; (require 'ansi-color)
-(add-hook 'compilation-filter-hook
-          '(lambda ()
-             (ansi-color-apply-on-region (point-min) (point-max))))
-
 ;; コンパイル時の文字コード
 (add-hook 'compilation-filter-hook
           '(lambda ()
@@ -321,61 +316,6 @@
              (set-buffer-process-coding-system 'utf-8-dos 'utf-8-unix)
              (set-buffer-file-coding-system    'utf-8-unix)
              ))
-
-;; ディレクトリを指定してコンパイル
-(defun compile-directory (filename command &optional comint)
-  (interactive
-   (list
-    (read-file-name "Directory: " nil default-directory)
-    (let ((command (eval compile-command)))
-      (if (or compilation-read-command current-prefix-arg)
-          (compilation-read-command command)
-        command))
-    (consp current-prefix-arg)))
-  (unless (equal command (eval compile-command))
-    (setq compile-command command))
-  (save-some-buffers (not compilation-ask-about-save) nil)
-  (setq-default compilation-directory filename)
-  (setq default-directory filename)
-  (compilation-start command comint))
-
-(global-set-key (kbd "C-c C") 'compile-directory)
-(global-set-key (kbd "C-c c") 'compile)
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
-(defun my-c++-mode-hook ()
-  (define-key c++-mode-map (kbd "C-c C-c") 'recompile))
-(add-hook 'c-mode-common-hook 'my-c-mode-hook)
-(defun my-c-mode-hook ()
-  (define-key c-mode-map (kbd "C-c C-c") 'recompile))
-
-;; ソースを開いていた場合はヘッダ、ヘッダを開いていた場合はソースを開く
-(defun find-current-buffer-pair-file()
-  (interactive)
-  (if (or (string= (substring (buffer-file-name) -4 nil) ".cpp")
-          (string= (substring (buffer-file-name) -2 nil) ".c") )
-      (progn
-        (setq openfile (buffer-file-name))
-        (setq openfile (replace-regexp-in-string "src/\\(\\w+\\)\\.cpp$" "include/\\1.h" openfile))
-        (setq openfile (replace-regexp-in-string "/\\(\\w+\\)\\.cpp$" "/\\1.h" openfile))
-        (setq openfile (replace-regexp-in-string "src/\\(\\w+\\)\\.c$" "include/\\1.h" openfile))
-        (setq openfile (replace-regexp-in-string "/\\(\\w+\\)\\.c$" "/\\1.h" openfile))
-        (find-file openfile)
-        )
-    (progn
-      (if (string= (substring (buffer-file-name) -2 nil) ".h")
-          (progn
-            (setq openfile (buffer-file-name))
-            (setq openfile (replace-regexp-in-string "include/\\(\\w+\\)\\.h$" "src/\\1.cpp" openfile))
-            (setq openfile (replace-regexp-in-string "/\\(\\w+\\)\\.h$" "/\\1.cpp" openfile))
-            (setq openfile (replace-regexp-in-string "include/\\(\\w+\\)\\.h$" "src/\\1.c" openfile))
-            (setq openfile (replace-regexp-in-string "/\\(\\w+\\)\\.h$" "/\\1.c" openfile))
-            (find-file openfile)
-            )
-        )
-      )
-    )
-  )
-(global-set-key (kbd "C-M-f") 'find-current-buffer-pair-file)
 
 ;; ------------------------------------------------------------------------
 ;; @ menu-tree
