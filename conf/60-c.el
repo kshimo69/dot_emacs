@@ -77,7 +77,8 @@
             (c-set-style "bsd")
             (setq indent-tabs-mode t)    ;インデントはタブ
             (setq tab-width 4)           ;タブ幅は4
-            (setq c-auto-newline t)      ;全自動インデント
+            (setq c-auto-newline nil)    ;全自動インデントは無効
+            (c-toggle-hungry-state)      ;BSでいい感じに消してくれる
             (setq c-basic-offset 4)      ;オフセットは4つ
             (setq indent-tabs-mode nil)  ;インデントは空白文字
             ;; C-c C-sでインデントに効いてる変数を見つける
