@@ -339,3 +339,17 @@
 ;;     (when (file-symlink-p file)
 ;;       (delete-region (line-beginning-position) (line-end-position))
 ;;       (insert (w32-symlinks-parse-symlink file)))))
+
+;; ------------------------------------------------------------------------
+;; @ explorer
+
+;; カレントディレクトリを explorer (Win) で開く、cygwin 依存
+(defun escape-space-parentheses (str)
+  (replace-regexp-in-string " " "\\\\ "
+                            (replace-regexp-in-string "(" "\\\\("
+                                                      (replace-regexp-in-string ")" "\\\\)" str))))
+
+(defun explorer (&optional dir)
+  (interactive)
+  (setq dir (expand-file-name (or dir default-directory)))
+  (shell-command (concat "cygstart.exe " (escape-space-parentheses dir))))
