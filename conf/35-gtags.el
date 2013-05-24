@@ -11,6 +11,23 @@
          (local-set-key (kbd "M-g") 'gtags-find-with-grep)
          (local-set-key (kbd "C-t") 'gtags-pop-stack)
          ))
+
+;; update GTAGS
+(defun update-gtags (&optional prefix)
+  (interactive "P")
+  (let ((rootdir (gtags-get-rootpath))
+        (args (if prefix "-v" "-iv")))
+    (when rootdir
+      (let* ((default-directory rootdir)
+             (buffer (get-buffer-create "*update GTAGS*")))
+        (save-excursion
+          (set-buffer buffer)
+          (erase-buffer)
+          (let ((result (process-file "gtags" nil buffer nil args)))
+            (if (= 0 result)
+                (message "update GTAGS error with exit status %d" result))))))))
+;; (add-hook 'after-save-hook 'update-gtags)
+
 ;; 自動で gtags-mode になるように＆補完リスト作成
 (add-hook 'c-mode-common-hook
           '(lambda()
