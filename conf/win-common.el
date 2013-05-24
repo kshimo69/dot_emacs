@@ -27,8 +27,9 @@
 ;; @ encode
 
 ;; 機種依存文字
-;; (require 'cp5022x)
-;; (define-coding-system-alias 'euc-jp 'cp51932)
+(when (require 'cp5022x nil t)
+  (define-coding-system-alias 'euc-jp 'cp51932)
+  )
 
 ;; decode-translation-table の設定
 (coding-system-put 'euc-jp :decode-translation-table
@@ -153,7 +154,7 @@
 (coding-system-put 'cp932-mac :mnemonic ?P)
 
 ;; 透明
-(set-frame-parameter (selected-frame) 'alpha '(95 80))
+(set-frame-parameter (selected-frame) 'alpha '(95 90))
 
 ;; ------------------------------------------------------------------------
 ;; @ image-library
@@ -266,10 +267,10 @@
 
 ;; ------------------------------------------------------------------------
 ;; @ setup-cygwin
-;; (setq cygwin-mount-cygwin-bin-directory
-;;       (concat (getenv "CYGWIN_DIR") "\\bin"))
-;; (require 'setup-cygwin)
-;; (file-name-shadow-mode -1)
+(setq cygwin-mount-cygwin-bin-directory
+      (concat (getenv "CYGWIN_PATH") "\\bin"))
+(require 'setup-cygwin)
+(file-name-shadow-mode -1)
 
 ;; ------------------------------------------------------------------------
 ;; @ shell
