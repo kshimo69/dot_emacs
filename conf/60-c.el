@@ -102,7 +102,6 @@
             (setq c-auto-newline nil)    ;全自動インデントは無効
             (c-toggle-hungry-state)      ;BSでいい感じに消してくれる
             (setq c-basic-offset 4)      ;オフセットは4つ
-            (setq indent-tabs-mode nil)  ;インデントは空白文字
             ;; C-c C-sでインデントに効いてる変数を見つける
             (c-set-offset 'innamespace 0)     ;namespace{}の中はインデントしない
             (c-set-offset 'namespace-open 0)  ;namespaceの開き中括弧

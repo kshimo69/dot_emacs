@@ -298,10 +298,10 @@
        (lambda ()
 
          ;; シェルモードの入出力文字コード
-         ;; (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
-         ;; (set-buffer-file-coding-system    'sjis-unix)
-         (set-buffer-process-coding-system 'utf-8-dos 'utf-8-unix)
-         (set-buffer-file-coding-system    'utf-8-unix)
+         (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
+         (set-buffer-file-coding-system    'sjis-unix)
+         ;; (set-buffer-process-coding-system 'utf-8-dos 'utf-8-unix)
+         ;; (set-buffer-file-coding-system    'utf-8-unix)
          )))
 
 ;; ------------------------------------------------------------------------
@@ -312,10 +312,10 @@
 (add-hook 'compilation-filter-hook
           '(lambda ()
              ;; シェルモードの入出力文字コード
-             ;; (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
-             ;; (set-buffer-file-coding-system    'sjis-unix)
-             (set-buffer-process-coding-system 'utf-8-dos 'utf-8-unix)
-             (set-buffer-file-coding-system    'utf-8-unix)
+             (set-buffer-process-coding-system 'sjis-dos 'sjis-unix)
+             (set-buffer-file-coding-system    'sjis-unix)
+             ;; (set-buffer-process-coding-system 'utf-8-dos 'utf-8-unix)
+             ;; (set-buffer-file-coding-system    'utf-8-unix)
              ))
 
 ;; ------------------------------------------------------------------------
