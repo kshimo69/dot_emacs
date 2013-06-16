@@ -26,6 +26,11 @@
 ;; (add-hook 'org-agenda-mode-hook '(lambda () (hl-line-mode 1)))
 ;; (setq hl-line-face 'underline)
 
+;; http://unknownplace.org/archives/orgmode-meets-blosxom.html
+;; バッファ内のコードブロッックをそのコード用のモードと同じ色でハイライト
+(setq org-src-fontify-natively t)
+;; カーソルをコードに合わせて C-c ' するとそのモードで編集バッファが立ちあがる
+
 ;; TODO keywords as workflow state
 (setq org-todo-keywords
       '((sequence "TODO(t)" "WAIT(w)" "CALENDAR(c)"
