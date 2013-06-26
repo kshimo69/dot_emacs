@@ -123,6 +123,8 @@
       '(
         ("." . "~/.emacs.d/var/backup")
         ))
+;; バックアップファイルリストの保存位置変更
+(setq auto-save-list-file-prefix "~/.emacs.d/var/auto-save-list/.saves-")
 
 ;; TAB はスペース 4 個ぶんを基本
 (setq-default tab-width 4)
