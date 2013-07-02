@@ -159,14 +159,6 @@
           '(lambda ()
              (ansi-color-apply-on-region (point-min) (point-max))))
 
-;; コンパイル時の文字コード
-(add-hook 'compilation-filter-hook
-          '(lambda ()
-             ;; シェルモードの入出力文字コード
-             (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
-             (set-buffer-file-coding-system    'utf-8-unix)
-             ))
-
 ;; ディレクトリを指定してコンパイル
 (defun compile-directory (filename command &optional comint)
   (interactive

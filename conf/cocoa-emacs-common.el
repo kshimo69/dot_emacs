@@ -75,3 +75,12 @@
         (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
         (".*monaco-bold-.*-mac-roman" . 0.9)
         ("-cdac$" . 1.3)))
+
+;; コンパイル時の文字コード
+(add-hook 'compilation-filter-hook
+          '(lambda ()
+             ;; シェルモードの入出力文字コード
+             (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix)
+             (set-buffer-file-coding-system    'utf-8-unix)
+             ))
+
