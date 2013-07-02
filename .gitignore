@@ -9,3 +9,4 @@ server/*
 conf/00-password.el
 elpa/*.txt
 tramp
+eshell/history
