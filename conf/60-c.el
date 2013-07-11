@@ -74,6 +74,10 @@
 ;; $ apt-cyg -m http://ftp.iij.ad.jp/pub/cygwin/ install libllvm-devel libllvm3.1 llvm llvm-debuginfo llvm-doc clang clang-analyzer libclang libclang-devel python-clang
 ;; https://github.com/Golevka/emacs-clang-complete-async
 
+;; auto-complete-clang-async-once patch
+;; https://github.com/Golevka/emacs-clang-complete-async/issues/15
+;; https://github.com/Golevka/emacs-clang-complete-async/commit/dcc54e9230cf2a0851232314a354c14bb1bc85c3
+
 (when (require 'auto-complete-clang-async)
   (defun ac-cc-mode-setup ()
     (setq ac-clang-complete-executable "~/.emacs.d/share/clang-complete/clang-complete")
