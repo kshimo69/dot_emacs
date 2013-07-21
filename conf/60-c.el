@@ -78,18 +78,18 @@
 ;; https://github.com/Golevka/emacs-clang-complete-async/issues/15
 ;; https://github.com/Golevka/emacs-clang-complete-async/commit/dcc54e9230cf2a0851232314a354c14bb1bc85c3
 
-(when (require 'auto-complete-clang-async)
-  (defun ac-cc-mode-setup ()
-    (setq ac-clang-complete-executable "~/.emacs.d/share/clang-complete/clang-complete")
-    (setq ac-sources (append '(ac-source-gtags
-                               ac-source-clang-async
-                               ) ac-sources))
-    (ac-clang-launch-completion-process)
-    )
+;; (when (require 'auto-complete-clang-async)
+;;   (defun ac-cc-mode-setup ()
+;;     (setq ac-clang-complete-executable "~/.emacs.d/share/clang-complete/clang-complete")
+;;     (setq ac-sources (append '(ac-source-gtags
+;;                                ac-source-clang-async
+;;                                ) ac-sources))
+;;     (ac-clang-launch-completion-process)
+;;     )
 
-  (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-  (add-hook 'c++-mode-hook 'ac-cc-mode-setup)
-  )
+;;   (add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+;;   (add-hook 'c++-mode-hook 'ac-cc-mode-setup)
+;;   )
 
 (add-hook 'c-mode-hook
           '(lambda ()
